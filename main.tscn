@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cf43avemqk4lh"]
+[gd_scene load_steps=11 format=3 uid="uid://cap5yl5nyricl"]
 
-[ext_resource type="Script" uid="uid://c7oiixqyw337k" path="res://spieler.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://bm21kfxggg02j" path="res://camera_rig.gd" id="2_0xm2m"]
+[ext_resource type="Script" path="res://spieler.gd" id="1_ig7tw"]
+[ext_resource type="Script" path="res://camera_rig.gd" id="2_0xm2m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
 size = Vector3(10, 0.5, 10)
