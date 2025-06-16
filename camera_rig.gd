@@ -12,4 +12,4 @@ func _process(delta):
 	global_transform.origin = global_transform.origin.lerp(desired_position, delta * follow_speed)
 
 	# Kamera immer ausrichten
-	look_at(target.global_transform.origin + Vector3(0, 1, 0), Vector3.UP)
+	look_at(target.global_transform.origin + Vector3(0, 1, 0), Vector3.UP)adaad
