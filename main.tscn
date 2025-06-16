@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://cf43avemqk4lh"]
+
+[ext_resource type="Script" uid="uid://c7oiixqyw337k" path="res://spieler.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bm21kfxggg02j" path="res://camera_rig.gd" id="2_0xm2m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(1, 0.27451, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0, 1, 1, 1)
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture_channel = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h2yge"]
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="main" type="Node3D"]
+
+[node name="boden" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="boden"]
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="boden"]
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="box" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="box"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.736665, 0)
+shape = SubResource("BoxShape3D_1bvp3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="box/CollisionShape3D"]
+mesh = SubResource("BoxMesh_lquwl")
+
+[node name="spieler" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40594, -3.49596)
+script = ExtResource("1_ig7tw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="spieler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.128815, 0)
+shape = SubResource("CapsuleShape3D_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="spieler/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_h2yge")
+
+[node name="CameraRig" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_0xm2m")
+target = NodePath("../spieler")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.509372, 0.860547, 0, -0.860547, 0.509372, 0, 6.90796, 5.43299)
+light_color = Color(1, 1, 0.878431, 1)
+light_energy = 5.0
+light_indirect_energy = 2.0
+sky_mode = 1
